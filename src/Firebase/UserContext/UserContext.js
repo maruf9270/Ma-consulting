@@ -16,6 +16,8 @@ const UserContext = ({children}) => {
 
 // Implementing sign in method
 
+// jwt
+
               // GOOGLE
   const signupUpWithGoogle = () =>{
     setLoading(true);

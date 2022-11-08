@@ -1,8 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 const SignUp = () => {
+
+
+      
     const [error,setError] = useState('')
 
     // Geeting functions from the usercontext
@@ -47,10 +50,25 @@ const SignUp = () => {
         }
     }
 
+    // Handling google
     const handleGoogle = () =>{
         signupUpWithGoogle()
         .then(data=>{
             setError('')
+            const userMail = data.user.email;
+            fetch('http://localhost:4000/jwt',{
+                method:'post',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({mail:userMail})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data.token);
+                const token = data.token
+                localStorage.setItem('token',token)
+            })
         })
         .catch(err=>{
             setError('Something went wrong. Try again letter')
@@ -64,8 +82,23 @@ const SignUp = () => {
         githubsignUp()
         .then(res=> {
             setError('')
+            const userMail = res.user.email;
+            fetch('http://localhost:4000/jwt',{
+                method:'post',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({mail:userMail})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data.token);
+                const token = data.token
+                localStorage.setItem('token',token)
+            })
         })
         .catch(err=> {
+            console.log(err);
             setError('Something went wrong. Try again letter')
         })
     }
