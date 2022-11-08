@@ -20,6 +20,20 @@ const Login = () => {
         logInWithEmail(email,password)
         .then(res=>{
             setError('')
+            const userMail = email;
+            fetch('https://ma-consulting-three.vercel.app/jwt',{
+                method:'post',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({mail:userMail})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data.token);
+                const token = data.token
+                localStorage.setItem('token',token)
+            })
             form.reset()
         })
         .catch(err=>{
@@ -34,6 +48,20 @@ const Login = () => {
         signupUpWithGoogle()
         .then(data=>{
             setError('')
+            const userMail = data.user.email;
+            fetch('https://ma-consulting-three.vercel.app/jwt',{
+                method:'post',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({mail:userMail})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data.token);
+                const token = data.token
+                localStorage.setItem('token',token)
+            })
         })
         .catch(err=>{
             setError('Something went wrong. Try again letter')
@@ -47,6 +75,20 @@ const Login = () => {
         githubsignUp()
         .then(res=> {
             setError('')
+            const userMail = res.user.email;
+            fetch('https://ma-consulting-three.vercel.app/jwt',{
+                method:'post',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({mail:userMail})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data.token);
+                const token = data.token
+                localStorage.setItem('token',token)
+            })
         })
         .catch(err=> {
             setError('Something went wrong. Try again letter')

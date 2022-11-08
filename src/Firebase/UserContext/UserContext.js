@@ -8,7 +8,7 @@ const gitprovider = new GithubAuthProvider()
 export const UserContextApi = createContext('') 
 const UserContext = ({children}) => {
   // seeting loading for user info
-  const [loading ,setLoading] = useState(false)
+  const [loading ,setLoading] = useState(true)
   // seeting user to the state
   const [user, setUser] = useState();
   // geeting auth from firebase
@@ -68,6 +68,7 @@ const UserContext = ({children}) => {
 
                   
                 }
+                console.log(user);
     return (
        <UserContextApi.Provider value={values}>
          {children}

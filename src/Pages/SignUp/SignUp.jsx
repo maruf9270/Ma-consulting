@@ -39,6 +39,21 @@ const SignUp = () => {
             .then(res=>{
                 setError('')
                 form.reset()
+                // Handling database
+                const user = {
+                    email: email,
+                    password: password
+                }
+                fetch('https://ma-consulting-three.vercel.app/signupmail',{
+                    method:'put'
+                    ,headers:{
+                        'content-type':'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                .then(res=>res.json())
+                .then(data=>{console.log(data)})
+                
                 handleSignout()
                
             })
@@ -56,7 +71,7 @@ const SignUp = () => {
         .then(data=>{
             setError('')
             const userMail = data.user.email;
-            fetch('http://localhost:4000/jwt',{
+            fetch('https://ma-consulting-three.vercel.app/jwt',{
                 method:'post',
                 headers:{
                     'content-type': 'application/json'
@@ -69,6 +84,16 @@ const SignUp = () => {
                 const token = data.token
                 localStorage.setItem('token',token)
             })
+            fetch('https://ma-consulting-three.vercel.app/signup',{
+                    method:'put',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify({mail:userMail})
+
+                })
+                .then(res=>res.json())
+                .then(data=> console.log(data))
         })
         .catch(err=>{
             setError('Something went wrong. Try again letter')
@@ -83,7 +108,7 @@ const SignUp = () => {
         .then(res=> {
             setError('')
             const userMail = res.user.email;
-            fetch('http://localhost:4000/jwt',{
+            fetch('https://ma-consulting-three.vercel.app/jwt',{
                 method:'post',
                 headers:{
                     'content-type': 'application/json'
@@ -96,6 +121,18 @@ const SignUp = () => {
                 const token = data.token
                 localStorage.setItem('token',token)
             })
+
+            // Handling database 
+            fetch('https://ma-consulting-three.vercel.app/signup',{
+                    method:'put',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify({mail:userMail})
+
+                })
+                .then(res=>res.json())
+                .then(data=> console.log(data))
         })
         .catch(err=> {
             console.log(err);
