@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
-
+export const UserContextApi = createContext('') 
 const UserContext = ({children}) => {
-    const UserContextApi = createContext('') 
+  
     return (
        <UserContextApi.Provider value={'connected successfully'}>
          {children}
