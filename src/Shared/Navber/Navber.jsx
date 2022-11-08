@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 const Navber = () => {
+  const {Logout} = useContext(UserContextApi)
+  const handlesignout = () =>{
+    Logout()
+    .then(Res=>console.log('success'))
+    .catch(Err=>console.log(Err))
+
+  }
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
         <div>
@@ -78,14 +86,14 @@ const Navber = () => {
             </a>
           </li>
           <li>
-            <a
-              href="/"
+            <button
+             onClick={handlesignout}
               class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
               aria-label="Sign up"
               title="Sign up"
             >
               Sign up
-            </a>
+            </button>
           </li>
         </ul>
         <div class="lg:hidden">
