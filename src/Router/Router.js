@@ -4,6 +4,7 @@ import MainLayout from "../MainLayout/MainLayout";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import ReviewPage from "../Pages/ReviewPage/ReviewPage";
+import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
@@ -15,7 +16,8 @@ export const router = createBrowserRouter([
         ,children:[
             {
                 index:true,
-                element:<Homepage></Homepage>
+                element:<Homepage></Homepage>,
+                loader: ()=>fetch('https://ma-consulting-three.vercel.app/services?limit=3')
             },
             {
                 path:'/login',
@@ -28,6 +30,11 @@ export const router = createBrowserRouter([
             {
                 path:'/review'
                 ,element:<PrivetRoute><ReviewPage></ReviewPage></PrivetRoute>
+            },
+            {
+                path: '/service/details/:id'
+                ,element: <ServiceDetails></ServiceDetails>
+                ,loader: ({params})=>fetch(`http://localhost:4000/service/details?id=${params.id}`)
             }
         ]
     }
