@@ -1,10 +1,11 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Reviews from './Reviews/Reviews';
 
 const ServiceDetails = () => {
     const data = useLoaderData()
     let i = 1;
-    const {s_des} = data
+    const {s_des,_id} = data
     return (
         <div className='lg:w-[90%] w-[98%] mx-auto'>
             <div>
@@ -21,6 +22,11 @@ const ServiceDetails = () => {
                     }
                </div>
             </div>
+            {/* Review section */}
+           <div className='my-9'>
+            <h2 className='text-3xl font-bold'>Reviews</h2>
+           <Reviews id={_id}></Reviews>
+           </div>
         </div>
     );
 };

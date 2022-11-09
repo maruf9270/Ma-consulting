@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
             {
                 path: '/service/details/:id'
                 ,element: <ServiceDetails></ServiceDetails>
-                ,loader: ({params})=>fetch(`http://localhost:4000/service/details?id=${params.id}`)
+                ,loader: ({params})=>fetch(`https://ma-consulting-three.vercel.app/service/details?id=${params.id}`)
             }
             ,{
                 path:'/services',

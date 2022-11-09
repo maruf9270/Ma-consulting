@@ -16,9 +16,9 @@ const PrivetRoute = ({children}) => {
 
     if(user?.uid){
         return(
-           <div>
-            access granted
-           </div>
+           {
+            children
+           }
         )
 
     }
