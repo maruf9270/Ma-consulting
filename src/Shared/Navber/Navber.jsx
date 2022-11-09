@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 const Navber = () => {
-  const {Logout} = useContext(UserContextApi)
+  const {Logout,user} = useContext(UserContextApi)
   const handlesignout = () =>{
     Logout()
     .then(Res=>console.log('success'))
     .catch(Err=>console.log(Err))
 
   }
+  const handlenavigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
         <div>
@@ -65,36 +66,58 @@ const Navber = () => {
               Features
             </a>
           </li>
-          <li>
-            <a
-              href="/"
-              aria-label="Product pricing"
-              title="Product pricing"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Pricing
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
-              aria-label="About us"
-              title="About us"
-              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              About us
-            </a>
-          </li>
-          <li>
-            <button
-             onClick={handlesignout}
-              class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Sign up
-            </button>
-          </li>
+          {
+                user?.uid ? <><li>
+                  <Link
+                    to={'/myreviews'}
+                    aria-label="My Reviews"
+                    title="My Reviews"
+                    class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                   My Reviews
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={'/addservice'}
+                    aria-label="Add Service"
+                    title="Add Services"
+                    class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                   Add Service
+                  </Link>
+                </li>
+                <li>
+                  <button
+                   onClick={handlesignout}
+                    class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                    aria-label="Sign up"
+                    title="Sign up"
+                  >
+                    Log Out
+                  </button>
+                </li></>:
+
+
+                <>
+                <button
+                   onClick={()=>handlenavigate('/login')}
+                    class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                    aria-label="Sign up"
+                    title="Sign up"
+                  >
+                    Log in
+                  </button>
+                  <button
+                   onClick={()=>handlenavigate('/signup')}
+                    class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                    aria-label="Sign up"
+                    title="Sign up"
+                  >
+                   Register
+                  </button>
+                </>
+          }
         </ul>
         <div class="lg:hidden">
           <button
@@ -187,36 +210,64 @@ const Navber = () => {
                         Features
                       </a>
                     </li>
+                   {
+                    user?.uid ? <> <li>
+                    <Link
+                      to="/myreviews"
+                      aria-label="My Reviews"
+                      title="My Reviews"
+                      class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    >
+                     My Reviews
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                     to={'/addservices'}
+                      aria-label="Add Services"
+                      title="Add Services"
+                      class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                    >
+                      Add Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                    onClick={handlesignout}
+                      class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                      Log Out
+                    </Link>
+                  </li></>:
+                  
+
+                  
+                  <>
+
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Product pricing"
-                        title="Product pricing"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Pricing
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        aria-label="About us"
-                        title="About us"
-                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        About us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </a>
-                    </li>
+                    <Link
+                    onClick={()=>handlenavigate('/login')}
+                      class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                     Log in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                    onClick={()=>handlenavigate('/signup')}
+                      class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                      aria-label="Sign up"
+                      title="Sign up"
+                    >
+                      Register
+                    </Link>
+                  </li>
+                  </>
+                   }
                   </ul>
                 </nav>
               </div>
