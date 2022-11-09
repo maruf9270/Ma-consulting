@@ -1,10 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContextApi } from '../../../Firebase/UserContext/UserContext';
+import SingleReview from './SingleRview/SingleReview';
 
 const Reviews = (props) => {
     
     const sid = props.id
+    // For forcing the page to relode
+    const [force,setForce] = useState('')
+    // Storing the data to the state
+    const [reviews,setReview] = useState([])
+    // loading service review
+    useEffect(()=>{
+        fetch(`http://localhost:4000/reviews?sid=${sid}`)
+        .then(res=>res.json())
+        .then(data=>setReview(data))
+    },[force])
+
+    console.log(reviews);
     const {user} = useContext(UserContextApi)
     console.log(user);
     const handleSubmit = (e) =>{
@@ -12,6 +25,7 @@ const Reviews = (props) => {
         const form = e.target
        const review = e.target.review.value
        const email = user.email
+       const time = Date.now()
        const name = user.displayName ? user.displayName : "No Name"
        const photo = user.photoURL ? user.photoURL : "https://i.ibb.co/vJ4qDFz/User-avatar-svg.png"
       const reviewobj = {
@@ -19,7 +33,8 @@ const Reviews = (props) => {
         email: email,
         name: name,
         img: photo,
-        review: review
+        review: review,
+        time: time
       }
        
       fetch('http://localhost:4000/add/review',{
@@ -34,6 +49,7 @@ const Reviews = (props) => {
         console.log(data);
         if(data.insertedId){
             alert("Review added successfully")
+            setForce(data.insertedId)
             form.reset()
         }
       })
@@ -70,7 +86,9 @@ const Reviews = (props) => {
             <div>
                 User Reviews
                 <div>
-                    
+                    {
+                        reviews.map(r=> <SingleReview key={r._id} data={r}></SingleReview>)
+                    }
                 </div>
             </div>
             
