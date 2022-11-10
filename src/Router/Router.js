@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Homepage from "../Homepage/Homepage";
 import MainLayout from "../MainLayout/MainLayout";
+import Addservice from "../Pages/AddService/Addservice";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import FullServices from "../Pages/FullServices/FullServices";
 import Login from "../Pages/Login/Login";
@@ -47,6 +48,12 @@ export const router = createBrowserRouter([
                 path:'/editreview/:ID'
                 ,element:<SingleEeviewEdit></SingleEeviewEdit>
                 ,loader:({params})=>fetch(`http://localhost:4000/editreview?id=${params.ID}`)
+            },
+            {
+                path:'/addservice',
+                element:<Addservice></Addservice>,
+                loader: ()=>fetch('http://localhost:4000/total')
+
             }
         ]
     }
