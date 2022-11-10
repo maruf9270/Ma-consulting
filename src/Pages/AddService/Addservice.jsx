@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 
 const Addservice = () => {
@@ -44,14 +45,18 @@ const Addservice = () => {
 
     }
     return (
-        <div className='lg:w-[90%] mx-auto w-[98%]'>
+        <div className='lg:w-[90%] mx-auto w-[98%] p-8 border-[1px] border-gray-400 rounded-md my-11'>
+            <div className='flex justify-center items-center'>
+                <h3 className='text-3xl font-bold'>Add Your service</h3>
+
+            </div>
             <form action="" onSubmit={handlesubmit}>
             <div className="form-control w-full">
                 <label className="label">
                     <span className="label-text">Service Name</span>
                     
                 </label>
-                <input type="text" placeholder="Name of the service" className="input input-bordered w-full " name='name'/>
+                <input type="text" placeholder="Name of the service" className="input input-bordered w-full " name='name' required/>
                 <label className="label">
                 
                 
@@ -62,7 +67,7 @@ const Addservice = () => {
                     <span className="label-text">Service title</span>
                     
                 </label>
-                <input type="text" placeholder="title of ths service" className="input input-bordered w-full " name='title'/>
+                <input type="text" placeholder="title of ths service" className="input input-bordered w-full " name='title' required/>
                 <label className="label">
                 
                 
@@ -73,7 +78,7 @@ const Addservice = () => {
                     <span className="label-text">Price </span>
                     
                 </label>
-                <input type="text" placeholder="price of ths service" className="input input-bordered w-full " name='price'/>
+                <input type="text" placeholder="price of ths service" className="input input-bordered w-full " name='price' required/>
                 <label className="label">
                 
                 
@@ -84,7 +89,7 @@ const Addservice = () => {
                     <span className="label-text">Banner image link of the service</span>
                     
                 </label>
-                <input type="text" placeholder="Banner image link" className="input input-bordered w-full " name='banner'/>
+                <input type="text" placeholder="Banner image link" className="input input-bordered w-full " name='banner' required/>
                 <label className="label">
                 
                 
@@ -95,7 +100,7 @@ const Addservice = () => {
                     <span className="label-text">Thumbnail Image link</span>
                     
                 </label>
-                <input type="text" placeholder="Thumbnail image link" className="input input-bordered w-full " name='thumbnail'/>
+                <input type="text" placeholder="Thumbnail image link" className="input input-bordered w-full " name='thumbnail' required/>
                 <label className="label">
                 
                 
@@ -106,7 +111,7 @@ const Addservice = () => {
                     <span className="label-text">Service description</span>
                     
                 </label> 
-                <textarea className="textarea textarea-bordered h-24" placeholder="Text Description" name='description'></textarea>
+                <textarea className="textarea textarea-bordered h-24" placeholder="Text Description" name='description' required></textarea>
                 <label className="label">
                     
                 </label> 
@@ -116,6 +121,10 @@ const Addservice = () => {
                     <button className='btn btn-primary' type='submit'>Add Service</button>
                 </div>
             </form>
+            <Helmet>
+            <title>Ma Consulting- ADD Services</title>
+        </Helmet>
+        
         </div>
     );
 };

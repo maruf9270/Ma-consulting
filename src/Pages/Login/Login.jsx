@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
@@ -47,7 +48,7 @@ const Login = () => {
             setError('Invalid E-mail or password')
             toast.error("Invalid E-mail or password")
         })
-        console.log(email,password);
+        
     }
 
     // Handling google sign in 
@@ -155,7 +156,9 @@ const Login = () => {
                     <Link rel="noopener noreferrer" to={'/signup'} className="underline dark:text-black-100">Sign up</Link>
                 </p>
             </div>
-            
+            <Helmet>
+            <title>Ma Consulting- Login</title>
+        </Helmet>
             
         </div>
     );

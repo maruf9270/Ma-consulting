@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import UserContext from './Firebase/UserContext/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <UserContext>
-    <ToastContainer
+   <HelmetProvider>
+   <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
@@ -23,6 +25,7 @@ root.render(
         pauseOnHover
         theme="light"></ToastContainer>
     <App />
+   </HelmetProvider>
     </UserContext>
   </React.StrictMode>
 );

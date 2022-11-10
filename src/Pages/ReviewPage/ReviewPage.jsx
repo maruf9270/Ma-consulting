@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 import Singleone from './PersonSIngleReview/Singleone';
 
@@ -60,7 +61,7 @@ const ReviewPage = () => {
     return (
         <>
         {
-           ( myReviews.length > 0 ? <div className='grid lg:grid-cols-3 lg:w-[90%] mx-auto gap-7 my-10'>
+           ( myReviews.length > 0 ? <div className='grid lg:grid-cols-3 lg:w-[90%] mx-auto gap-7 my-20' >
            {
              myReviews.map(r=> <Singleone key={r._id} data={r} handledelete={handledelete}></Singleone>)
            }
@@ -71,6 +72,9 @@ const ReviewPage = () => {
            )
           
         }
+        <Helmet>
+            <title>Ma Consulting- Review</title>
+        </Helmet>
         </>
     );
    }

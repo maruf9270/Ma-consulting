@@ -89,7 +89,8 @@ const Reviews = (props) => {
                 
                 <div>
                     {
-                        reviews.map(r=> <SingleReview key={r._id} data={r}></SingleReview>)
+                        reviews.length > 0 ? reviews?.map(r=> <SingleReview key={r._id} data={r}></SingleReview>):<>
+                        <h3 className='text-2xl'>No review found</h3></>
                     }
                 </div>
             </div>

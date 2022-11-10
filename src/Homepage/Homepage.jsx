@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { UserContextApi } from '../Firebase/UserContext/UserContext';
 import ServicesCard from './ServicesCard/ServicesCard';
@@ -18,6 +19,9 @@ const Homepage = () => {
         <div>
             <button onClick={()=>handleClick('/services')}>View All</button>
         </div>
+        <Helmet>
+            <title>Ma Consulting Home</title>
+        </Helmet>
         </>
     );
 };

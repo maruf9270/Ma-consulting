@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 const SignUp = () => {
-
+  
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     //   Hanlding navigate
     const navigate = useNavigate()
@@ -114,7 +117,8 @@ const SignUp = () => {
 
                 })
                 .then(res=>res.json())
-                .then(data=> {})
+                .then(data=> { navigate(from, { replace: true });})
+                toast.success("Signed up successfully")
         })
         .catch(err=>{
             setError('Something went wrong. Try again letter')
@@ -153,7 +157,9 @@ const SignUp = () => {
 
                 })
                 .then(res=>res.json())
-                .then(data=> {})
+                .then(data=> { })
+                toast.success("Signed up successfully")
+                navigate(from, { replace: true });
         })
         .catch(err=> {
             console.log(err);
@@ -161,10 +167,10 @@ const SignUp = () => {
         })
     }
     return (
-        <div className='w-[100vw] h-[100vh] min-h-[35rem]'>
+        <div className='w-[100vw]  min-h-[35rem]'>
 
            
-        <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-slate-200 dark:text-black-100 mx-auto my-10 shadow-md-black">
+        <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-slate-200 dark:text-black-100 mx-auto my-10 shadow-md-black ">
             <h1 className="text-2xl font-bold text-center">Sign Up</h1>
             <form onSubmit={handlesubmit} action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
                 <div className="space-y-1 text-sm">
@@ -224,7 +230,9 @@ const SignUp = () => {
             </p>
         </div>
         
-        
+        <Helmet>
+            <title>Ma Consulting- Sign Up</title>
+        </Helmet>
     </div>
     );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import ServicesCard from '../../Homepage/ServicesCard/ServicesCard';
 
@@ -28,10 +29,13 @@ const FullServices = () => {
    }
    else{
     return (
-        <div className='grid lg:grid-cols-3 md:grid-cols-2 lg:w-[90%] sm:w-[98%] mx-auto gap-4 justify-items-center'>
+        <div className='grid lg:grid-cols-3 md:grid-cols-2 lg:w-[90%] sm:w-[98%] mx-auto gap-4 justify-items-center my-10'>
             {
                 data.map(s=> <ServicesCard key={s._id} data={s}></ServicesCard>)
             }
+            <Helmet>
+            <title>Ma Consulting- All services</title>
+        </Helmet>
         </div>
     );
    }

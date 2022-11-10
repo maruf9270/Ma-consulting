@@ -49,6 +49,16 @@ const Navber = () => {
               Blog
             </Link>
           </li>
+          <li>
+            <Link
+            to={'/services'}
+              aria-label="service"
+              title="Service"
+              class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
+            >
+              Services
+            </Link>
+          </li>
           {
                 user?.uid ? <><li>
                   <Link
@@ -170,6 +180,16 @@ const Navber = () => {
                        Blog
                       </Link>
                     </li>
+                    <li>
+                    <Link
+                    to={'/services'}
+                      aria-label="service"
+                      title="Service"
+                      class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
+                    >
+                      Services
+                    </Link>
+                  </li>
                    {
                     user?.uid ? <> <li>
                     <Link

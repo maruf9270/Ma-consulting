@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../Blog/Blog";
 import Homepage from "../Homepage/Homepage";
 import MainLayout from "../MainLayout/MainLayout";
 import Addservice from "../Pages/AddService/Addservice";
@@ -54,6 +55,9 @@ export const router = createBrowserRouter([
                 element:<PrivetRoute><Addservice></Addservice></PrivetRoute>,
                 loader: ()=>fetch('https://ma-consulting-three.vercel.app/total')
 
+            },{
+                path:'/blog'
+                ,element:<Blog></Blog>
             }
         ]
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useRouteError } from 'react-router-dom';
 
 const ErrorPage = () => {
@@ -22,6 +23,9 @@ const ErrorPage = () => {
                 </div>
             </div>
         </section>
+        <Helmet>
+            <title>Ma Consulting- Error</title>
+        </Helmet>
         </div>
     );
 };

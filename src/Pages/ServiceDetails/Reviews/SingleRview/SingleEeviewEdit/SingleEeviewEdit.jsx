@@ -28,15 +28,15 @@ const SingleEeviewEdit = () => {
     }
   
     return (
-        <div>
-            Edit your review
+        <div className='min-h-[70vh] flex justify-center items-center flex-col w-[90vw] mx-auto'>
+            <h1 className='text-3xl font-bold'>Edit your review</h1>
            <form action="" onSubmit={handleEditReview}>
            <div className="form-control">
             <label className="label">
                 {/* <span className="label-text">Your bio</span>
                 <span className="label-text-alt">Alt label</span> */}
             </label> 
-            <textarea defaultValue={review} className="textarea textarea-bordered h-24" placeholder="Edit Your Review" name='edit'></textarea>
+            <textarea defaultValue={review} className="textarea textarea-bordered h-24 w-[80vw]" placeholder="Edit Your Review" name='edit'></textarea>
             <label className="label">
                 {/* <span className="label-text-alt">Your bio</span>
                 <span className="label-text-alt">Alt label</span> */}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import Reviews from './Reviews/Reviews';
 
@@ -27,6 +28,9 @@ const ServiceDetails = () => {
             <h2 className='text-3xl font-bold'>Reviews</h2>
            <Reviews id={_id}></Reviews>
            </div>
+           <Helmet>
+            <title>Ma Consulting- Srvice Details</title>
+        </Helmet>
         </div>
     );
 };
