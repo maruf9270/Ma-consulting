@@ -5,6 +5,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import FullServices from "../Pages/FullServices/FullServices";
 import Login from "../Pages/Login/Login";
 import ReviewPage from "../Pages/ReviewPage/ReviewPage";
+import SingleEeviewEdit from "../Pages/ServiceDetails/Reviews/SingleRview/SingleEeviewEdit/SingleEeviewEdit";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
                 element:<SignUp></SignUp>
             },
             {
-                path:'/review'
+                path:'/myreviews'
                 ,element:<PrivetRoute><ReviewPage></ReviewPage></PrivetRoute>
             },
             {
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
                 path:'/services',
                 element:<FullServices></FullServices>
                 ,loader:()=>fetch('https://ma-consulting-three.vercel.app/services?limit=0')
+            },
+            {
+                path:'/editreview/:ID'
+                ,element:<SingleEeviewEdit></SingleEeviewEdit>
+                ,loader:({params})=>fetch(`http://localhost:4000/editreview?id=${params.ID}`)
             }
         ]
     }

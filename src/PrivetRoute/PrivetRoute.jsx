@@ -16,9 +16,10 @@ const PrivetRoute = ({children}) => {
 
     if(user?.uid){
         return(
+          <>
            {
             children
-           }
+           }</>
         )
 
     }
