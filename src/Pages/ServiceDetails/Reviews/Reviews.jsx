@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { UserContextApi } from '../../../Firebase/UserContext/UserContext';
 import SingleReview from './SingleRview/SingleReview';
 
@@ -48,7 +49,7 @@ const Reviews = (props) => {
       .then(data=>{
         console.log(data);
         if(data.insertedId){
-            alert("Review added successfully")
+            toast.success("Review added successfully")
             setForce(data.insertedId)
             form.reset()
         }
@@ -57,6 +58,7 @@ const Reviews = (props) => {
        
         
     }
+   
 
     return (
         <div>
@@ -80,11 +82,11 @@ const Reviews = (props) => {
                        </form>
                    
                    </>
-               ):<>Please <Link to={'/login'}>login</Link> to add a review</>
+               ):<>Please <Link to={'/login'} className="font-bold text-blue-600">login</Link> to add a review</>
             }
-
-            <div>
-                User Reviews
+            <h1 className='text-2xl font-bold my-5'>User Reviews:</h1>
+            <div className='p-8'>
+                
                 <div>
                     {
                         reviews.map(r=> <SingleReview key={r._id} data={r}></SingleReview>)

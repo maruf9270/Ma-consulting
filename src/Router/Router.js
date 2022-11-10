@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
             ,{
                 path:'/services',
                 element:<FullServices></FullServices>
-                ,loader:()=>fetch('https://ma-consulting-three.vercel.app/services?limit=0')
+                
             },
             {
                 path:'/editreview/:ID'

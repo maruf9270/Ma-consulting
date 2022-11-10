@@ -3,6 +3,10 @@ import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 import Singleone from './PersonSIngleReview/Singleone';
 
 const ReviewPage = () => {
+
+
+    // To handle loading 
+    const [loading,setloading] = useState(true)
     const token = localStorage.getItem('token')
     const {user} = useContext(UserContextApi)
     const mail = user?.email;
@@ -17,7 +21,11 @@ const ReviewPage = () => {
             }
         })
         .then(res=>res.json())
-        .then(data=>setReviews(data))
+        .then(data=>{
+            
+            setReviews(data)
+            setloading(false)
+        })
     },[user,mail,token,reload])
     
 
@@ -42,10 +50,17 @@ const ReviewPage = () => {
             return
         }
     }
+   if(loading){
+    return <div className='w-[100vw] min-h-[80vh] flex justify-center items-center'>
+        <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-600"></div>
+
+    </div>
+   }
+   else{
     return (
         <>
         {
-           ( myReviews.length > 0 ? <div className='grid lg:grid-cols-3 lg:w-[90%] mx-auto gap-7'>
+           ( myReviews.length > 0 ? <div className='grid lg:grid-cols-3 lg:w-[90%] mx-auto gap-7 my-10'>
            {
              myReviews.map(r=> <Singleone key={r._id} data={r} handledelete={handledelete}></Singleone>)
            }
@@ -58,6 +73,7 @@ const ReviewPage = () => {
         }
         </>
     );
+   }
 };
 
 export default ReviewPage;

@@ -8,11 +8,11 @@ const ServiceDetails = () => {
     const {s_des,_id} = data
     return (
         <div className='lg:w-[90%] w-[98%] mx-auto'>
-            <div>
-                <img src={data.s_b_img} alt="" />
+            <div className="border-[1px] border-gray-300 shadow-md shadow-gray-200 rounded-xl">
+                <img src={data.s_b_img} alt="" className='rounded-xl' />
 
             </div>
-            <div>
+            <div className="border-[1px] border-gray-300 shadow-md shadow-gray-200 rounded-xl my-6 p-6">
                 <h2 className='text-3xl font-bold'>
                     {data.s_title}
                 </h2>
@@ -23,7 +23,7 @@ const ServiceDetails = () => {
                </div>
             </div>
             {/* Review section */}
-           <div className='my-9'>
+           <div className='className="border-[1px] border-gray-300 shadow-md shadow-gray-200 rounded-xl" p-6 my-6'>
             <h2 className='text-3xl font-bold'>Reviews</h2>
            <Reviews id={_id}></Reviews>
            </div>

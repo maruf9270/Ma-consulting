@@ -29,7 +29,7 @@ const Singleone = (props) => {
             <figure><img src={reviewd?.s_t_img} alt="Shoes" /></figure>
             <div className="card-body w-full">
                 <h2 className="card-title">{reviewd?.s_name}</h2>
-                <p className='max-w-[15rem] whitespace-nowrap min-h-[3rem]'>{review}</p>
+                <p className='max-w-[15rem] flex min-h-[3rem]'>{review}</p>
                 <div className="card-actions justify-end">
                 <button className="btn btn-primary" onClick={()=>handleNavigateforedit(`/editreview/${_id}`)}>Edit</button>
                 <button onClick={()=>handledelete(_id)} className="btn btn-primary">Delete</button>
