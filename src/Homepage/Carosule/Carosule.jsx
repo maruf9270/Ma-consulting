@@ -13,7 +13,7 @@ const Carosule = () => {
    
    
         return (
-            <Carousel style={styles} className='lg:w-[90vw] mx-auto w-[98vw] rounded-md' infiniteLoop onSwipeMove> 
+            <Carousel autoPlay style={styles} className='lg:w-[90vw] mx-auto w-[98vw] rounded-md' infiniteLoop onSwipeMove> 
             <div className='img-gradient relative' >
               <img alt="" src=" https://i.ibb.co/rQYdN4B/mario-gogh-VBLHICVh-l-I-unsplash-1.jpg" className='' />
               <div  className='absolute color-none top-[30%] left-[10%] z-10 text-white flex flex-col justify-start items-start'>
