@@ -12,7 +12,7 @@ const Reviews = (props) => {
     const [reviews,setReview] = useState([])
     // loading service review
     useEffect(()=>{
-        fetch(`http://localhost:4000/reviews?sid=${sid}`)
+        fetch(`https://ma-consulting-three.vercel.app/reviews?sid=${sid}`)
         .then(res=>res.json())
         .then(data=>setReview(data))
     },[force])
@@ -37,7 +37,7 @@ const Reviews = (props) => {
         time: time
       }
        
-      fetch('http://localhost:4000/add/review',{
+      fetch('https://ma-consulting-three.vercel.app/add/review',{
         method: "post",
         headers:{
             "content-type":"application/json"

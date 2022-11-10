@@ -26,7 +26,7 @@ const Addservice = () => {
         
 
         // Adding the service
-        fetch('http://localhost:4000/addservice',{
+        fetch('https://ma-consulting-three.vercel.app/addservice',{
             method:'put',
             headers:{
                 "content-type": "application/json"

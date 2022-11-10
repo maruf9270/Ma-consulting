@@ -11,7 +11,7 @@ const ReviewPage = () => {
 
     const [myReviews,setReviews] = useState('')
     useEffect(()=>{
-        fetch(`http://localhost:4000/myreviews?mail=${mail}`,{
+        fetch(`https://ma-consulting-three.vercel.app/myreviews?mail=${mail}`,{
             headers:{
                 token:token
             }
@@ -27,7 +27,7 @@ const ReviewPage = () => {
         console.log(op);
         const id = props
         if(op){
-            fetch(`http://localhost:4000/delete?id=${id}`,{
+            fetch(`https://ma-consulting-three.vercel.app/delete?id=${id}`,{
             method:"delete"
         })
         .then(res=>res.json())

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 
@@ -33,12 +34,14 @@ const Login = () => {
                 console.log(data.token);
                 const token = data.token
                 localStorage.setItem('token',token)
+                toast.success("Logged in succesfully")
             })
             form.reset()
         })
         .catch(err=>{
             console.log(err);
             setError('Invalid E-mail or password')
+            toast.error("Invalid E-mail or password")
         })
         console.log(email,password);
     }
@@ -65,6 +68,7 @@ const Login = () => {
         })
         .catch(err=>{
             setError('Something went wrong. Try again letter')
+            toast.error("Something went Wront.Try again letter")
 
         })
 
@@ -92,6 +96,7 @@ const Login = () => {
         })
         .catch(err=> {
             setError('Something went wrong. Try again letter')
+            toast.error("Something went Wront.Try again letter")
         })
     }
 

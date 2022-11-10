@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SingleEeviewEdit = () => {
     const {_id,review} = useLoaderData()
@@ -9,7 +10,7 @@ const SingleEeviewEdit = () => {
         e.preventDefault()
         const edditedValue = e.target.edit.value
         
-        fetch(`http://localhost:4000/update?id=${_id}`,{
+        fetch(`https://ma-consulting-three.vercel.app/update?id=${_id}`,{
             method:'put'
             ,headers:{
                 "content-type":"application/json"
@@ -20,7 +21,7 @@ const SingleEeviewEdit = () => {
         .then(res=>{
             // setreload(relode+res.modifiedCount)
             if(res.modifiedCount){
-                alert('Your Review Has been updated')
+                toast('Review Editted successfull')
             }
         })
 
@@ -43,6 +44,7 @@ const SingleEeviewEdit = () => {
             </div>
             <button className='btn btn-primary' type='submit'>Edit</button>
            </form>
+          
         </div>
     );
 };

@@ -46,13 +46,13 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/editreview/:ID'
-                ,element:<SingleEeviewEdit></SingleEeviewEdit>
-                ,loader:({params})=>fetch(`http://localhost:4000/editreview?id=${params.ID}`)
+                ,element:<PrivetRoute><SingleEeviewEdit></SingleEeviewEdit></PrivetRoute>
+                ,loader:({params})=>fetch(`https://ma-consulting-three.vercel.app/editreview?id=${params.ID}`)
             },
             {
                 path:'/addservice',
-                element:<Addservice></Addservice>,
-                loader: ()=>fetch('http://localhost:4000/total')
+                element:<PrivetRoute><Addservice></Addservice></PrivetRoute>,
+                loader: ()=>fetch('https://ma-consulting-three.vercel.app/total')
 
             }
         ]
