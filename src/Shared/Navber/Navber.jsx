@@ -1,13 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 import Logo from '../../Assets/Logo.png'
+import { toast } from 'react-toastify';
 
 const Navber = () => {
+  const navigate = useNavigate()
   const {Logout,user} = useContext(UserContextApi)
   const handlesignout = () =>{
     Logout()
-    .then(Res=>console.log('success'))
+    .then(Res=>{
+      toast.success("Logged out successfully")
+     navigate('/')
+    })
     .catch(Err=>console.log(Err))
 
   }
@@ -22,7 +27,7 @@ const Navber = () => {
     <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div class="relative flex items-center justify-between">
         <Link
-          href="/"
+          to={'/'}
           aria-label="Ma consulting"
           title="Ma consulting"
           class="inline-flex items-center"
@@ -36,7 +41,7 @@ const Navber = () => {
           
           <li>
             <Link
-            to={'blog'}
+            to={'/blog'}
               aria-label="blog"
               title="Blog"
               class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"

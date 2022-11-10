@@ -1,30 +1,41 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 const SignUp = () => {
 
 
-      
+    //   Hanlding navigate
+    const navigate = useNavigate()
     const [error,setError] = useState('')
 
     // Geeting functions from the usercontext
-    const {logInWithEmail,signupUpWithGoogle,githubsignUp,signUpWithEmailandPass,Logout} = useContext(UserContextApi)
+    const {signupUpWithGoogle,githubsignUp,signUpWithEmailandPass,Logout,update} = useContext(UserContextApi)
+
+    // Handle name and photo url upload
+    const updating = (props)=>{
+        update(props)
+        .then(data=>{})
+    }
 
     // Handle signout
     const handleSignout = () =>{
         Logout()
-        .then(res=>{console.log('success');})
+        .then(res=>{})
         .catch(err=>setError(err))
     }
-    // Handling sign in
+    // Handling sign up
     const handlesubmit = (e)=>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value
-        console.log(confirmPassword);
+        const photoUrl = form.photo.value;
+        const name = form.uname.value
+       
+       
         if(password.length < 6 ){
             setError("Password Must be at least 6 charecter Long")
             return
@@ -42,7 +53,9 @@ const SignUp = () => {
                 // Handling database
                 const user = {
                     email: email,
-                    password: password
+                    password: password,
+                    name: name,
+                    img: photoUrl
                 }
                 fetch('https://ma-consulting-three.vercel.app/signupmail',{
                     method:'put'
@@ -52,16 +65,24 @@ const SignUp = () => {
                     body: JSON.stringify(user)
                 })
                 .then(res=>res.json())
-                .then(data=>{console.log(data)})
-                
+                .then(data=>{
+                   
+                    
+                })
+                const uinfo = {
+                    displayName: name, photoURL: photoUrl
+                  }
+                updating(uinfo)
                 handleSignout()
+                toast.info('Account Created successfully. Please login')
+                navigate('/login')
                
             })
             .catch(err=>{
                 console.log(err);
                 setError(err.status)
             })
-            console.log(email,password);
+            
         }
     }
 
@@ -80,7 +101,7 @@ const SignUp = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data.token);
+             
                 const token = data.token
                 localStorage.setItem('token',token)
             })
@@ -93,7 +114,7 @@ const SignUp = () => {
 
                 })
                 .then(res=>res.json())
-                .then(data=> console.log(data))
+                .then(data=> {})
         })
         .catch(err=>{
             setError('Something went wrong. Try again letter')
@@ -117,7 +138,7 @@ const SignUp = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data.token);
+
                 const token = data.token
                 localStorage.setItem('token',token)
             })
@@ -132,7 +153,7 @@ const SignUp = () => {
 
                 })
                 .then(res=>res.json())
-                .then(data=> console.log(data))
+                .then(data=> {})
         })
         .catch(err=> {
             console.log(err);
@@ -149,6 +170,11 @@ const SignUp = () => {
                 <div className="space-y-1 text-sm">
                     <label htmlFor="email" className="block dark:text-black-400">E-mail</label>
                     <input type="text" name="email" id="E-mail" placeholder="E-mail" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white dark:text-black-100 focus:dark:border-violet-400" required/>
+                </div>
+                <div className="space-y-1 text-sm">
+                    <label htmlFor="uname" className="block dark:text-black-400">Full Name</label>
+                    <input type="text" name="uname" id="name" placeholder="Full name" className="w-full px-4 py-3 rounded-md dark:border-gray-700 bg-white dark:text-black-100 focus:dark:border-violet-400" required />
+                    
                 </div>
                 <div className="space-y-1 text-sm">
                     <label htmlFor="photo-url" className="block dark:text-black-400">Photo Url</label>
@@ -193,8 +219,8 @@ const SignUp = () => {
                     </svg>
                 </button>
             </div>
-            <p className="text-xs text-center sm:px-6 dark:text-black-400">Don't have an account?
-                <Link rel="noopener noreferrer" href="#" className="underline dark:text-black-100">Sign up</Link>
+            <p className="text-xs text-center sm:px-6 dark:text-black-400">Already have an account?
+                <Link rel="noopener noreferrer" to={'/login'} className="underline dark:text-black-100">Login</Link>
             </p>
         </div>
         

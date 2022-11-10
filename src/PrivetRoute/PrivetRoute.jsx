@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { UserContextApi } from '../Firebase/UserContext/UserContext';
 
 const PrivetRoute = ({children}) => {
+  let location = useLocation();
     const {user,loading} = useContext(UserContextApi);
     console.log(user);
 
@@ -24,7 +25,7 @@ const PrivetRoute = ({children}) => {
 
     }
   else{
-    return <Navigate to={'/login'}></Navigate>
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 };
 

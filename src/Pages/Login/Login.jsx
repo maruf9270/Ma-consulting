@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 
 
 const Login = () => {
-
+    // Handleing naviagate
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     // Handling eror 
     const [error,setError] = useState('')
 
@@ -35,6 +38,7 @@ const Login = () => {
                 const token = data.token
                 localStorage.setItem('token',token)
                 toast.success("Logged in succesfully")
+                navigate(from, { replace: true });
             })
             form.reset()
         })
@@ -61,9 +65,11 @@ const Login = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data.token);
+               
                 const token = data.token
                 localStorage.setItem('token',token)
+                toast.success("Logged in succesfully")
+                navigate(from, { replace: true });
             })
         })
         .catch(err=>{
@@ -89,9 +95,11 @@ const Login = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data.token);
+               
                 const token = data.token
                 localStorage.setItem('token',token)
+                toast.success("Logged in succesfully")
+                navigate(from, { replace: true });
             })
         })
         .catch(err=> {
@@ -144,7 +152,7 @@ const Login = () => {
                     </button>
                 </div>
                 <p className="text-xs text-center sm:px-6 dark:text-black-400">Don't have an account?
-                    <Link rel="noopener noreferrer" href="#" className="underline dark:text-black-100">Sign up</Link>
+                    <Link rel="noopener noreferrer" to={'/signup'} className="underline dark:text-black-100">Sign up</Link>
                 </p>
             </div>
             

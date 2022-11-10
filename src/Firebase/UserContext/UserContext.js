@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateCurrentUser, updateProfile } from 'firebase/auth'
 import app from '../Firebase.config';
 const provider = new GoogleAuthProvider();
 const gitprovider = new GithubAuthProvider()
@@ -18,6 +18,11 @@ const UserContext = ({children}) => {
 
 // jwt
 
+
+              // Handling user signup with name and photo
+  const update = (props) =>{
+   return updateProfile(auth.currentUser,props)
+  }
               // GOOGLE
   const signupUpWithGoogle = () =>{
     setLoading(true);
@@ -65,10 +70,11 @@ const UserContext = ({children}) => {
                   logInWithEmail,
                   githubsignUp,
                   Logout,
+                  update
 
                   
                 }
-                console.log(user);
+               
     return (
        <UserContextApi.Provider value={values}>
          {children}

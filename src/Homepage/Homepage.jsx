@@ -12,7 +12,7 @@ const Homepage = () => {
     return (
         
         <>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 lg:w-[90%] sm:w-[98%] mx-auto gap-0 justify-items-center'>
+        <div className='grid lg:grid-cols-3 md:grid-cols-2 lg:w-[90%] sm:w-[98%] mx-auto gap-0 justify-items-center'>
            {services.map(s=><ServicesCard key={s._id} data={s}></ServicesCard>)}
         </div>
         <div>
