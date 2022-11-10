@@ -5,7 +5,7 @@ import { UserContextApi } from '../Firebase/UserContext/UserContext';
 const PrivetRoute = ({children}) => {
   let location = useLocation();
     const {user,loading} = useContext(UserContextApi);
-    console.log(user);
+    
 
     if(loading){
         return (

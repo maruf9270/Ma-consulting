@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-toastify';
 import { UserContextApi } from '../../Firebase/UserContext/UserContext';
 import Singleone from './PersonSIngleReview/Singleone';
 
@@ -33,7 +34,8 @@ const ReviewPage = () => {
     // handledelete
     const handledelete = (props) =>{
         const op = window.confirm("Are you sure you want to delete")
-        console.log(op);
+       
+       
         const id = props
         if(op){
             fetch(`https://ma-consulting-three.vercel.app/delete?id=${id}`,{
@@ -42,7 +44,7 @@ const ReviewPage = () => {
         .then(res=>res.json())
         .then(data=>{
             setreload(reload+data.deletedCount)
-            alert("deleted succesfully")
+            toast.success("Deleted Successfully")
         })
 
         }

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Addservice = () => {
     const {total} = useLoaderData();
-    console.log(total);
+   
     const handlesubmit = (e) => {
         e.preventDefault()
         const form = e.target
@@ -14,9 +15,10 @@ const Addservice = () => {
         const bannerImg = form.banner.value;
         const thumbnail = form.thumbnail.value;
         const description = form.description.value;
+        const snum = "0" + (total+1)
         
         const service = {
-            s_id: total+1,
+            s_id: snum,
             s_name: name,
             s_title: title,
             s_price: price,
@@ -38,7 +40,7 @@ const Addservice = () => {
         .then(res=>res.json())
         .then(data=> {
             if(data.insertedId){
-                alert("Service added successfully")
+                toast.success("Survice Added successfully")
             }
            form.reset()
         })

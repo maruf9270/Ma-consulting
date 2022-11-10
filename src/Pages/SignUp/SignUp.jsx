@@ -82,7 +82,7 @@ const SignUp = () => {
                
             })
             .catch(err=>{
-                console.log(err);
+               
                 setError(err.status)
             })
             
@@ -162,7 +162,7 @@ const SignUp = () => {
                 navigate(from, { replace: true });
         })
         .catch(err=> {
-            console.log(err);
+           
             setError('Something went wrong. Try again letter')
         })
     }

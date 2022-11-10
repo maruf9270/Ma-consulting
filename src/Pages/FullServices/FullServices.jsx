@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useLoaderData } from 'react-router-dom';
+
 import ServicesCard from '../../Homepage/ServicesCard/ServicesCard';
 
 const FullServices = () => {
@@ -12,13 +12,13 @@ const FullServices = () => {
         fetch(`https://ma-consulting-three.vercel.app/services?limit=0`)
         .then(res=>res.json())
         .then(datas=>{
-            console.log(datas);
+           
             setData(datas)
             setloading(false)
         })
     },[])
 
-    console.log(data);
+   
 
    if(loading){
 

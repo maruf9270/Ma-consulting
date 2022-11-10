@@ -35,7 +35,7 @@ const Login = () => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data.token);
+               
                 const token = data.token
                 localStorage.setItem('token',token)
                 toast.success("Logged in succesfully")
@@ -44,7 +44,7 @@ const Login = () => {
             form.reset()
         })
         .catch(err=>{
-            console.log(err);
+            
             setError('Invalid E-mail or password')
             toast.error("Invalid E-mail or password")
         })

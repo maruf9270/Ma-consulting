@@ -18,9 +18,9 @@ const Reviews = (props) => {
         .then(data=>setReview(data))
     },[force])
 
-    console.log(reviews);
+  
     const {user} = useContext(UserContextApi)
-    console.log(user);
+    
     const handleSubmit = (e) =>{
         e.preventDefault();
         const form = e.target
@@ -47,7 +47,7 @@ const Reviews = (props) => {
       })
       .then(res=>res.json())
       .then(data=>{
-        console.log(data);
+        
         if(data.insertedId){
             toast.success("Review added successfully")
             setForce(data.insertedId)
